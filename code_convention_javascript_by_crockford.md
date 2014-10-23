@@ -52,7 +52,7 @@
 
 推荐将每个变量的定义及其注释置于同一行，如果可能的话，变量名应该按照首字母顺序先后排列。例如：
 ```javascript
- var currentEntry, // currently selected table entry
+    var currentEntry, // currently selected table entry
         level,        // indentation level
         size;         // size of table
 ```
@@ -64,8 +64,8 @@ Javascript并没有代码块级的作用域，因此对于熟悉C语言家族的
 所有的函数都应该先声明后调用，内部函数应采用`var`语句来定义。这样可以区分清楚哪些变量在该函数作用域内。
 
 函数名和参数列表的起始符 （ `（左括号）`之间不应该保留空格。右括号和函数体的起始符 { `（左大括号）`之间应该保留一个空格。函数体整体要有4个空格的缩进。将函数体结束符 } `（右大括号）` 和函数声明的初始行对齐。例如：
-```
-function outer(c, d) {
+```javascript
+    function outer(c, d) {
         var e = c * d;
 
         function inner(a, b) {
@@ -73,18 +73,18 @@ function outer(c, d) {
         }
 
         return inner(0, 1);
-}
+    }
 ```
 这条规则很适合Javascript语言，因为在Javascript中，任何表达式可以被调用的地方，都可以调用函数和对象字面量。这就使得内联函数和复杂数据结构具有最好的可读性。
-```
-function getElementsByClassName(className) {
+```javascript
+    function getElementsByClassName(className) {
         var results = [];
         walkTheDOM(document.body, function (node) {
             var array,                // array of class names
                 ncn = node.className; // the node's classname
 
-// If the node has a class name, then split it into a list of simple names.
-// If any of them match the requested name, then append the node to the list of results.
+    // If the node has a class name, then split it into a list of simple names.
+    // If any of them match the requested name, then append the node to the list of results.
 
             if (ncn && ncn.split(' ').indexOf(className) >= 0) {
 			    results.push(node);
@@ -95,8 +95,8 @@ function getElementsByClassName(className) {
 ```
 
 对于匿名函数，关键字`function`和`（`（左括号）之间应该保留一个空格。如果没有空格，那么`function`就是该函数的名称，这会导致误读。
-```
-div.onclick = function (e) {
+```javascript
+    div.onclick = function (e) {
         return false;
     };
 
@@ -105,40 +105,40 @@ div.onclick = function (e) {
             return this.datum;
         },
         datum: 0
-};
+    };
 ```
 
 应该尽量少使用全局函数。
 
 如果一个函数会被立即调用，那么应该用圆括号包含整个函数调用表达式，以便于清晰的表明该函数的执行结果即为表达式的返回值，而不是函数本身。
-```
-var collection = (function () {
-    var keys = [], values = [];
-
-    return {
-        get: function (key) {
-            var at = keys.indexOf(key);
-            if (at >= 0) {
-                return values[at];
-            }
-        },
-        set: function (key, value) {
-            var at = keys.indexOf(key);
-            if (at < 0) {
-                at = keys.length;
-            }
-            keys[at] = key;
-            values[at] = value;
-        },
-        remove: function (key) {
-            var at = keys.indexOf(key);
-            if (at >= 0) {
-                keys.splice(at, 1);
-                values.splice(at, 1);
-            }
-        }
-    };
-}());
+```javascript
+    var collection = (function () {
+	    var keys = [], values = [];
+	
+	    return {
+	        get: function (key) {
+	            var at = keys.indexOf(key);
+	            if (at >= 0) {
+	                return values[at];
+	            }
+	        },
+	        set: function (key, value) {
+	            var at = keys.indexOf(key);
+	            if (at < 0) {
+	                at = keys.length;
+	            }
+	            keys[at] = key;
+	            values[at] = value;
+	        },
+	        remove: function (key) {
+	            var at = keys.indexOf(key);
+	            if (at >= 0) {
+	                keys.splice(at, 1);
+	                values.splice(at, 1);
+	            }
+	        }
+	    };
+	}());
 ```
 
 ## 命名
@@ -181,7 +181,7 @@ Javascript允许将任何表达式作为语句使用，这会隐藏一些错误�
 ### `if`语句
 
 `if`语句应该遵循如下格式：
-```
+```javascript
     if (condition) {
         statements
     }
@@ -204,7 +204,7 @@ Javascript允许将任何表达式作为语句使用，这会隐藏一些错误�
 ### `for`语句 
 
 `for`语句应该遵循如下格式： 
-``` 
+```javascript
     for (initialization; condition; update) {
         statements
     }
@@ -220,7 +220,7 @@ Javascript允许将任何表达式作为语句使用，这会隐藏一些错误�
 The first form should be used with arrays and with loops of a predeterminable number of iterations. 
 
 第二种格式适用于对象成员的遍历。请注意，这种格式下，添加至对象原型的成员变量也会被循环遍历出来。明智的做法是，调用对象的`hasOwnProperty`方法将对象真正的成员区分出来。 
-``` 
+```javascript
    for (variable in object) {
         if (object.hasOwnProperty(variable)) {
             statements
@@ -231,7 +231,7 @@ The first form should be used with arrays and with loops of a predeterminable nu
 ### `while`语句 
 
 `while`语句应该遵循如下格式： 
-``` 
+```javascript
     while (condition) {
         statements
     }
@@ -240,7 +240,7 @@ The first form should be used with arrays and with loops of a predeterminable nu
 ### `do`语句 
 
 `do`语句应该遵循如下格式： 
-``` 
+```javascript
     do {
         statements
     } while (condition);
@@ -250,7 +250,7 @@ The first form should be used with arrays and with loops of a predeterminable nu
 ### `try`语句 
 
 `try`语句应该遵循如下格式： 
-``` 
+```javascript
     try {
         statements
     } catch (variable) {
@@ -321,11 +321,11 @@ Javascript中，代码块并没有作用域。只有函数有作用域。除了�
 ### 加法和减法运算符的混淆使用
 
 请注意，不要在`+`后跟随`+`或`++`，这会难以理解。为了清晰表达你的意图，请用括号区分这两部分。 
-``` 
+```javascript
 total = subtotal + +myInput.value;
 ``` 
 应该写为 
-``` 
+```javascript
 total = subtotal + (+myInput.value);
 ``` 
 这样`+ +`才不会被误读为`++`。 
