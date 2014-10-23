@@ -51,7 +51,7 @@
 将`var`声明语句作为函数体的首行。
 
 推荐将每个变量的定义及其注释置于同一行，如果可能的话，变量名应该按照首字母顺序先后排列。例如：
-```
+```javascript
  var currentEntry, // currently selected table entry
         level,        // indentation level
         size;         // size of table
